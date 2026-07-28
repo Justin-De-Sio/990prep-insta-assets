@@ -11,8 +11,8 @@ import datetime
 import urllib.request
 
 TOKEN = os.environ["BUFFER_TOKEN"]
-CHANNEL = "6a68e6a64b2d03035f58693c"
-ORG = "6a68e50da6debabf55d35e10"
+CHANNEL = "6a6905ac4b2d03035f59bf82"
+ORG = "6a6901264dff53bec45819bb"
 RAW = "https://raw.githubusercontent.com/Justin-De-Sio/990prep-insta-assets/main/images"
 MAX_QUEUE = 10
 DUE_HOUR_UTC = 9  # 11h Paris l'été, 10h l'hiver
