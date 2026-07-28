@@ -1,0 +1,30 @@
+name: Buffer daily top-up
+
+on:
+  schedule:
+    - cron: '35 9 * * *'   # 09:35 UTC, juste après la publication du jour (09:00 UTC)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  topup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compléter la file Buffer
+        env:
+          BUFFER_TOKEN: ${{ secrets.BUFFER_TOKEN }}
+        run: python3 topup.py
+
+      - name: Sauvegarder l'avancement
+        run: |
+          if ! git diff --quiet state.json; then
+            git config user.name "buffer-topup"
+            git config user.email "990prep@gmail.com"
+            git add state.json
+            git commit -m "top-up: avance next_index"
+            git push
+          fi
